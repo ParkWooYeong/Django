@@ -46,7 +46,7 @@ def write():
         db.session.add(new_post)
         db.session.commit()
         
-        # 게시물 작성 후 리다이렉트 asd
+        # 게시물 작성 후 리다이렉트
         return redirect('/category/free')
     else:
         # GET 요청인 경우 작성 페이지 렌더링
