@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content%}
+    <h1>Hello, {{ name }} !</h1>
+    <P> 모든 태그 : {{ tags|join:"," }}</P>
+    <p> 대표 태그 : {{ tags.0 }} (글자수 : {{ tags|length}})</p>
+    <p> 최근 게임:{{ game.today}} </p>
+    <p> 플레이한 게임</p>
+    <ul>
+        {% for game in game.items %}
+            <li>{{ game.0 }} - {{ game.1 }}</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}
