@@ -2,6 +2,8 @@
 
 
 {% block content%}
-<h1>Hello, Aiden!</h1>
-<div>This is my first Django PJT</div>
+<h1>안녕?, 우영!</h1>
+<a href="{% url 'data-throw' %}">Throw로 이동</a><br>
+<a href="{% url 'hello' %}">Hello로 이동</a><br>
+<a href="{% url 'users' %}">users로 이동</a><br>
 {% endblock content%}

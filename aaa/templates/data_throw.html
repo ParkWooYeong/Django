@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Data Throw</h1>
+
+    <form action="{% url 'data-catch' %}" method="GET">
+
+        <label for="my-data">데이터 입력  </label>
+        <input type="text" id="message" name="message">
+
+        <button type="submit">확인</button>
+
+
+    </form>
+    <a href="{% url 'index' %}"> 홈으로 가기</a>
+{% endblock content %}
