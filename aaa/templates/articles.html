@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>안녕 클레오파트라 세상에서 제일 가는 포테이토칩</h1>
+
+<a href="{% url 'new' %}"><button>새로운 글 작성</button></a>
+
+{% for article in articles %}
+    <a href="{% url 'article_detail' article.pk %}">
+        <p>[ {{ article.pk }} ] {{ article.title }}</p>
+    </a>
+
+
+
+
+    {% endfor %}
+
+{% endblock content %}
