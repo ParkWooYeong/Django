@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import Article
 from .forms import ArticleForm
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_http_methods
 
 # Create your views here.
 def index(request):
@@ -29,7 +31,7 @@ def data_catch(request):
 
     return render(request, "data_catch.html", context)
 
-
+@login_required
 def create(request):
     if request.method == "POST":
         form = ArticleForm(request.POST) #데이터 바인딩된 폼
@@ -42,7 +44,7 @@ def create(request):
             form = ArticleForm()
     context = {"form": form}    
     return render(request, "create.html", context)
-
+    
 
 def delete(request, pk):
     if request.method == "POST":

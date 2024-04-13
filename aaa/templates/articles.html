@@ -3,7 +3,15 @@
 {% block content %}
 <h1>안녕 클레오파트라 세상에서 제일 가는 포테이토칩</h1>
 
-<a href="{% url 'create' %}"><button>새로운 글 작성</button></a>
+{% if request.user.is_authenticated %}
+    <a href="{% url 'create' %}">
+    
+    <button>새로운 글 작성</button>
+    </a>
+
+{% else %}
+    <a href="{% url 'accounts:login' %}">로그인하고 글 작성하기</a>
+{% endif %}
 
 {% for article in articles %}
     <a href="{% url 'article_detail' article.pk %}">

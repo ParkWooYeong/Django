@@ -6,7 +6,40 @@
     <title>Document</title>
 </head>
 <body>
-    {% block content%}
-    {% endblock content %}
+
+    <div class="navbar">
+
+
+        {% if request.user.is_authenticated %}
+        <h1>안녕 바바는 너야, {{ request.user.username }}</h1>
+
+        <form action="{% url 'accounts:logout' %}" method="POST">
+            {% csrf_token %}
+            <input type="submit" value="로그아웃"></input>
+        </form>
+
+
+        {% else %}
+
+
+        <a href="{% url 'accounts:login' %}">로그인</a>
+        
+
+        {% endif %}
+
+
+
+
+    
+    
+    
+    </div>
+    
+
+    <div class="container">
+        {% block content%}
+        {% endblock content %}
+    </div>
+    
 </body>
 </html>
