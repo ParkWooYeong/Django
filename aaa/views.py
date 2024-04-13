@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Article
-
+from .forms import ArticleForm
 
 # Create your views here.
 def index(request):
@@ -29,15 +29,20 @@ def data_catch(request):
 
     return render(request, "data_catch.html", context)
 
-def new(request):
-    return render(request, "new.html")
 
 def create(request):
-    title = request.POST.get("title")
-    content = request.POST.get("content")
+    if request.method == "POST":
+        form = ArticleForm(request.POST) #데이터 바인딩된 폼
+        if form.is_valid():
+        #데이터를 저장
+            article = form.save() 
+        # 다른곳으로 리다이렉트
+            return redirect("article_detail", article.pk)
+    else:
+            form = ArticleForm()
+    context = {"form": form}    
+    return render(request, "create.html", context)
 
-    article = Article.objects.create(title=title, content=content)# DB에 저장
-    return redirect("article_detail", article.pk)
 
 def delete(request, pk):
     if request.method == "POST":
@@ -46,21 +51,22 @@ def delete(request, pk):
         return redirect("articles")
     return redirect("article_detail", pk)
 
-def edit(request, pk):
-    article = Article.objects.get(pk=pk)
-    context = {"article": article}
-    return render(request, "edit.html", context)
 
 def update(request, pk):
-    title = request.POST.get("title")
-    content = request.POST.get("content")
-
     article = Article.objects.get(pk=pk)
-    article.title = title
-    article.content = content
-    article.save()
+    if request.method == "POST":
+        form = ArticleForm(request.POST, instance=article)
+        if form.is_valid():
+            article = form.save()
+            return redirect("article_detail", article.pk)
+    else:
+        form = ArticleForm(instance=article)
 
-    return redirect("article_detail", article.pk)
+    context = {
+        "form" : form,
+        "article": article,
+    }
+    return render(request, "update.html", context)
     
 
 

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     'aaa',
     'users',
+    'accounts',
     
 ]
 

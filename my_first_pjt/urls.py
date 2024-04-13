@@ -20,6 +20,8 @@ from aaa import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('index/', views.index, name="index"),
     path('aaa/', include("aaa.urls")),
     path('users/', include('users.urls')),
+    path('accounts/', include('accounts.urls'))
 ]
