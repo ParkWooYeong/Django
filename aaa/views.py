@@ -34,7 +34,7 @@ def data_catch(request):
 @login_required
 def create(request):
     if request.method == "POST":
-        form = ArticleForm(request.POST) #데이터 바인딩된 폼
+        form = ArticleForm(request.POST, request.FILES) #데이터 바인딩된 폼
         if form.is_valid():
         #데이터를 저장
             article = form.save() 

@@ -1,8 +1,13 @@
 {% extends 'base.html' %}
+{% load static %}
 
 
 {% block content%}
 <h1>안녕?, 우영!</h1>
+
+    <img src="{% static 'aaa/dasdas.jpg' %}"><br>
+
+    
     <a href="{% url 'data-throw' %}">Throw로 이동</a><br>
     <a href="{% url 'users' %}">users로 이동</a><br>
     <a href="{% url 'articles' %}">목록으로</a><br>

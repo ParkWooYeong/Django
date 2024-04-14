@@ -4,6 +4,10 @@
 <h2>Article Detail</h2>
 
     <h3>제목:{{ article.title }}</h3>
+	{% if article.image %}
+		<img src="{{ article.image.url }}">
+    {% endif %}	
+
     <p>게시글: {{ article.content }}</p>
     <p>작성 시간: {{ article.created_at }}</p>
     <p>수정일시 :</p>{{ article.updated_at }}</p>
